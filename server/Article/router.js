@@ -19,13 +19,13 @@ router.get("/:articleId", (request, response) => {
   });
 });
 
-router.post("/", (request, response) => {
-  Article.create(request.body, (error, article) => {
+router.post("/", (req, res) => {
+  Article.create(req.body, (error, article) => {
     if (error) {
       console.log(`Error creating Article, ${new Date()}: ${error}`);
-      response.status(400).json(error);
+      res.status(400).json(error);
     } else {
-      response.status(201).json(article);
+      res.status(201).json(article);
     }
   });
 });

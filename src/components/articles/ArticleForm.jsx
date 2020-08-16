@@ -11,7 +11,7 @@ const ArticleForm = ({ history }) => {
     e.preventDefault();
 
     // POST request to RESTful route (to be defined in backend)
-    fetch("/articles", {
+    fetch("/api", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -21,7 +21,9 @@ const ArticleForm = ({ history }) => {
           // let the user know that it went trough
           alert("Article successfully created");
           // when we get confirmation we can reset the form to its original state (empty)
-          setValues(initialState);
+          return response.json().then((article) => {
+            history.push(`/articles/${article._id}`);
+          });
         }
       })
       .catch((error) => alert(error));

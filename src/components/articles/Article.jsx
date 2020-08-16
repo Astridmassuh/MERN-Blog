@@ -1,10 +1,13 @@
+// import the useEffect function
+// import React from 'react'  //  becomes:
 import React, { useState, useEffect } from "react";
 
+// const Article = () => { // becomes:
 const Article = ({ match }) => {
   const [article, setArticle] = useState({});
 
   useEffect(() => {
-    fetch(`/articles/${match.params.articleId}`)
+    fetch(`/api/${match.params.articleId}`)
       .then((response) => response.json())
       .then((article) => setArticle(article))
       .catch((error) => alert(error));
@@ -12,7 +15,6 @@ const Article = ({ match }) => {
   return (
     <article>
       {" "}
-      {/* this is just an HTML element 😄*/}
       <h1>{article.title}</h1>
       <p>{article.text}</p>
     </article>
